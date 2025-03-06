@@ -5,9 +5,12 @@ export const DELETE_TASK_SUCCESS = "DELETE_TASK_SUCCESS";
 
 export const UPDATE_TASK_SUCCESS = "UPDATE_TASK_SUCCESS";
 export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
+export const SET_TASK_NULL = "SET_TASK_NULL";
 
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const SET_MESSAGE_SUCCESS = "SET_MESSAGE_SUCCESS";
 
+export const GET_MESSAGE_SUCCESS = "GET_MESSAGE_SUCCESS";
 export const GET_TASK_SUCCESS = "GET_TASK_SUCCESS";
 
 // export const addTask = (id,username,duedate,userid,taskTitle,taskdetails,taskstartedAt,taskendedAt,taskprogress,taskstatus, taskCategories) => {
@@ -64,17 +67,13 @@ export const addTask =
 // };
 
 export const getTask = (user) => async (dispatch) => {
-
   try {
-    if(user!==null){
+    if (user !== null) {
       const { data } = await api.getalltasksforuser(user.result._id);
       dispatch({ type: "GET_TASK_SUCCESS", payload: data });
-    }
-    else{
+    } else {
       dispatch({ type: "GET_TASK_SUCCESS", payload: [] });
-
     }
-    
   } catch (err) {
     console.log(err);
   }
@@ -84,18 +83,17 @@ export const getTask = (user) => async (dispatch) => {
 //   type: UPDATE_TASK_SUCCESS,
 //   payload: task
 // });
-export const updateTask = (task,id) => async (dispatch) => {
+export const updateTask = (task, id) => async (dispatch) => {
   try {
-    const { data } = await api.updatetask(task,id);
+    const { data } = await api.updatetask(task, id);
 
     const dateObject = new Date(task.duedate);
 
-// Convert Date object to ISO format
-const isoDate = dateObject.toISOString();
-task.duedate=isoDate
+    // Convert Date object to ISO format
+    const isoDate = dateObject.toISOString();
+    task.duedate = isoDate;
 
-dispatch({ type: "UPDATE_TASK_SUCCESS", payload: task });
-
+    dispatch({ type: "UPDATE_TASK_SUCCESS", payload: task });
   } catch (err) {
     console.log(err);
   }
@@ -106,17 +104,16 @@ dispatch({ type: "UPDATE_TASK_SUCCESS", payload: task });
 //   payload: id,
 // });
 
-export const deleteTask=(id)=>async(dispatch)=>{
-  try{
-      console.log(id)
-      const {data}=await api.deletetask(id)
+export const deleteTask = (id) => async (dispatch) => {
+  try {
+    console.log(id);
+    const { data } = await api.deletetask(id);
 
-      dispatch({ type: "DELETE_TASK_SUCCESS", payload: id });
-
-  }catch(err){
-      console.log(err)
+    dispatch({ type: "DELETE_TASK_SUCCESS", payload: id });
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
 export const setUser = (user) => ({
   type: SET_USER_SUCCESS,
@@ -133,11 +130,16 @@ export const getUser = (data) => {
 export const signup = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.SignUp(authData);
-    console.log("resu7lt");
-    console.log(data);
+    dispatch({ type: "SET_TASK_NULL",payload:[] });
+
     dispatch({ type: "AUTH", data });
     dispatch(setUser(JSON.parse(localStorage.getItem("Profile"))));
     // navigate('/')
+    // let userdata = JSON.parse(localStorage.getItem("Profile"));
+
+    // dispatch(getTask(userdata));
+    //console.log(data)
+    navigate("/");
   } catch (err) {
     console.log(err);
   }
@@ -146,13 +148,16 @@ export const signup = (authData, navigate) => async (dispatch) => {
 export const login = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.logIn(authData);
+   
+    
     dispatch({ type: "AUTH", data });
     dispatch(setUser(JSON.parse(localStorage.getItem("Profile"))));
-    let userdata=JSON.parse(localStorage.getItem('Profile'))
-        dispatch(getTask(userdata))
+    let userdata = JSON.parse(localStorage.getItem("Profile"));
+    dispatch(getTask(userdata));
     //console.log(data)
     navigate("/");
   } catch (err) {
-    console.log(err);
+    dispatch({type:'CHANGE',payload:err.response.data})
+    console.log(err.response.data);
   }
 };

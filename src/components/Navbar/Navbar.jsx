@@ -2,7 +2,8 @@ import { AppBar, Toolbar, Typography, Button, IconButton,Box } from "@mui/materi
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { addTask, getTask } from "../../redux/Actioins";
+import { addTask, getTask, setUser } from "../../redux/Actioins";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -34,6 +35,14 @@ const Navbar = (props) => {
   
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const navigate=useNavigate()
+
+
+    const handleLogout = (e) => {
+      dispatch(setUser(null))
+      navigate('/Login')
     };
 
     const handleDateChange = (e) => {
@@ -81,6 +90,12 @@ const Navbar = (props) => {
          <Button size="small" onClick={handleOpen} variant="contained">
          create task
          </Button>
+
+         <Button size="small" onClick={handleLogout} variant="contained">
+          Logout
+         </Button>
+
+
 
          <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Task</DialogTitle>

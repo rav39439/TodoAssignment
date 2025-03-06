@@ -5,6 +5,9 @@ import {
   SET_USER_SUCCESS,
   GET_USER_SUCCESS,
   GET_TASK_SUCCESS,
+  GET_MESSAGE_SUCCESS,
+  SET_MESSAGE_SUCCESS,
+  SET_TASK_NULL
 } from "./Actioins";
 
 const initialState = {
@@ -23,6 +26,9 @@ const TaskReducer = (state = initialState, action) => {
 
     case GET_TASK_SUCCESS:
       return{...state,tasks:[...action.payload]}
+
+      case SET_TASK_NULL:
+      return{...state,tasks:[]}
 
     case UPDATE_TASK_SUCCESS:
       return {
@@ -68,4 +74,26 @@ const UsersReducer = (state = initialStateuser, action) => {
   }
 };
 
-export { TaskReducer, UsersReducer };
+
+const initialMessage = null; // State starts as null
+
+const messageReducer = (state = initialMessage, action) => {
+  switch (action.type) {
+    case SET_MESSAGE_SUCCESS:
+      return {
+        ...state, // Ensure existing state is preserved
+        message: action.payload, // Store user object
+      };
+
+    case "CHANGE":
+      return { ...state, data: action?.payload };
+
+    case GET_MESSAGE_SUCCESS:
+      return state; // Return the current state when retrieving user
+
+    default:
+      return state; // Ensure default state is returned
+  }
+};
+
+export { TaskReducer, UsersReducer ,messageReducer};

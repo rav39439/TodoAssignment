@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { TextField, Button, Card, CardContent, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { login } from "../../redux/Actioins";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-const Login = () => {
+import { useSelector } from "react-redux";
+const Login = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
+  const [emailError, setEmailError] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const formRef = useRef(null);
 
   const handleChange = (e) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email) || formData.email=="") {
+      setEmailError("Invalid email format");
+    } else {
+      setEmailError("");
+    }
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData)
+    if (formRef.current) {
+      setIsValid(formRef.current.checkValidity());
+    }
   };
   const navigate=useNavigate()
 
@@ -18,6 +32,11 @@ const Login = () => {
     
     console.log("Login Data:", formData);
     dispatch(login({email:formData.email,password:formData.password},navigate))
+    console.log(props.currentMessage)
+    if( props.currentMessage!==null){
+      alert(props.currentMessage.data.message)
+    }
+    
     // Implement authentication logic here
   };
 
@@ -28,7 +47,7 @@ const Login = () => {
           <Typography variant="h5" textAlign="center" gutterBottom>
             Login
           </Typography>
-          <form onSubmit={handleSubmit}>
+          <form ref={formRef} onSubmit={handleSubmit}>
             <TextField
               label="Email"
               name="email"
@@ -37,6 +56,8 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              error={!!emailError} // Shows error state
+      helperText={emailError} // Displays error message
             />
             <TextField
               label="Password"
@@ -48,7 +69,11 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}
+              disabled={emailError !== ""} // Disable when there's an error
+
+            
+            >
               Login
             </Button>
 

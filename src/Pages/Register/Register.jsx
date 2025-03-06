@@ -3,19 +3,30 @@ import { TextField, Button, Card, CardContent, Typography, Box } from "@mui/mate
 import { Link } from "react-router-dom";
 import { signup } from "../../redux/Actioins";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
+  const [emailError, setEmailError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email) || formData.email=="") {
+      setEmailError("Invalid email format");
+    } else {
+      setEmailError("");
+    }
   };
   const dispatch = useDispatch();
+  const navigate=useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signup({username:formData.username,email:formData.email,password:formData.password}))
+    dispatch(signup({username:formData.username,email:formData.email,password:formData.password},navigate))
     console.log("Registration Data:", formData);
+    alert("successfully Registered. Please login")
     // Implement user registration logic here
   };
 
@@ -45,6 +56,8 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              error={!!emailError} // Shows error state
+      helperText={emailError} // Displays error message
             />
             <TextField
               label="Password"
@@ -56,7 +69,8 @@ const Register = () => {
               onChange={handleChange}
               required
             />
-            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}    disabled={emailError !== ""} // Disable when there's an error
+            >
               Register
             </Button>
 

@@ -2,8 +2,7 @@ import React from 'react'
 
 import  { useState, useEffect } from "react";
 import Acard from '../../components/Acard/Acard';
-import {  Typography } from '@mui/material';
-import { useSelector } from "react-redux";
+
 
 const Tasks = (props) => {
   const tasks = props.tasks; // Access tasksReducer state

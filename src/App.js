@@ -18,6 +18,8 @@ import Register from "./Pages/Register/Register";
 const mapStateToProps = (state) => ({
   currentuser: state.UsersReducer, // Ensure these match your actual reducer names
   tasks: state.TaskReducer, // Fixed reducer name
+  messages: state.messageReducer, // Fixed reducer name
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -57,7 +59,7 @@ let userdata=JSON.parse(localStorage.getItem('Profile'))
         <Navbar tasks={props.tasks.tasks} userInfo={props.currentuser}/>
         <Routes>
           <Route exact path="/" element={props.currentuser?.user!==null?<Tasks currentUser={props.currentuser} tasks={props.tasks.tasks} />:<Login />} />
-          <Route exact path="/Login" element={<Login />} />
+          <Route exact path="/Login" element={<Login  currentMessage={props.messages} />} />
           <Route exact path="/Register" element={<Register />} />
 
         </Routes>

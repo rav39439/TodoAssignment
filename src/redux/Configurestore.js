@@ -1,5 +1,5 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
-import { TaskReducer ,UsersReducer} from "./Reducers";
+import { TaskReducer ,UsersReducer,messageReducer} from "./Reducers";
 //const ConfigureStore=()=>{
 
 
@@ -8,7 +8,8 @@ import { TaskReducer ,UsersReducer} from "./Reducers";
 
 const reducer = combineReducers({
     TaskReducer,
-    UsersReducer 
+    UsersReducer,
+    messageReducer
 
    
   })
