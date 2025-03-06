@@ -51,6 +51,9 @@ console.log(formData)
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(formData.taskstatus=='Completed'){
+      formData.taskendedAt=new Date().toISOString()
+    }
    formData._id=props.task._id
      dispatch(updateTask(formData,props.task._id))
     console.log("Updated Task:", formData);

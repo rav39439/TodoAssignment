@@ -84,5 +84,21 @@
     margin: 0 10px; /* Space around the page number */
     font-size: 1rem; /* Font size for the page number */
   }
-  
-  
+  @media only screen and (min-width: 800px) {
+
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default for desktop */
+    gap: 16px;
+    width: 100%;
+  }
+}
+  /* Mobile View */
+  @media only screen and (max-width: 600px) {
+    .task-grid {
+      grid-template-columns: repeat(4, 1fr); /* Default for desktop */
+
+      gap: 16px;
+      width: 53%;
+    }
+  }
