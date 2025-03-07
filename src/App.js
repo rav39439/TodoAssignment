@@ -49,6 +49,7 @@ let userdata=JSON.parse(localStorage.getItem('Profile'))
         // console.log(decodedToken)
         if(decodedToken.exp*1000<new Date().getTime()){
             handleLogout()
+            
         }
     }
   }
