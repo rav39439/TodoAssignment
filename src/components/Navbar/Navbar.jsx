@@ -132,8 +132,7 @@ const Navbar = (props) => {
 { (userdata!==null)?
  <FormControl variant="outlined" size="small" sx={{ minWidth: 150 }}>
  <Select
-   name="taskstatus"
-   value={formData.taskstatus}
+   value=""
    onChange={handleCategoriesChange}
    displayEmpty
  >
@@ -216,6 +215,7 @@ const Navbar = (props) => {
                 value={formData.taskstatus}
                 // onChange={handleChange}
                 required
+                disabled
 
               >
                 {allstatus.map((cat) => (
