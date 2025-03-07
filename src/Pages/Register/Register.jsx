@@ -25,7 +25,6 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup({username:formData.username,email:formData.email,password:formData.password},navigate))
-    console.log("Registration Data:", formData);
     alert("successfully Registered. Please login")
     // Implement user registration logic here
   };

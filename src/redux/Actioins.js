@@ -50,7 +50,6 @@ export const addTask =
         taskCategories,
       };
       const { data } = await api.addnewtask(taskdata);
-      console.log(data);
 
       dispatch({ type: "ADD_TASK_SUCCESS", payload: taskdata });
       // dispatch(())
@@ -106,7 +105,6 @@ export const updateTask = (task, id) => async (dispatch) => {
 
 export const deleteTask = (id) => async (dispatch) => {
   try {
-    console.log(id);
     const { data } = await api.deletetask(id);
 
     dispatch({ type: "DELETE_TASK_SUCCESS", payload: id });
@@ -158,6 +156,5 @@ export const login = (authData, navigate) => async (dispatch) => {
     navigate("/");
   } catch (err) {
     dispatch({type:'CHANGE',payload:err.response.data})
-    console.log(err.response.data);
   }
 };

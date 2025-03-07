@@ -31,7 +31,6 @@ const Acard = (props) => {
 
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({ taskTitle: props.task.taskTitle,priority:props.task.priority || 'Medium',duedate:props.task.duedate,username:props.task.username,userid:props.task.userid, taskdetails:props.task.taskdetails,taskstartedAt:props.task.taskstartedAt,taskendedAt:props.task.taskendedAt, taskprogress:props.task.taskprogress,taskstatus:props.task.taskstatus,taskCategories:props.task.taskCategories });
-console.log(formData)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -40,12 +39,10 @@ console.log(formData)
   };
 
   const handleSliderChange = (newValue) => {
-    console.log(newValue)
      setFormData({ ...formData, taskprogress: newValue.target.value });
   };
 
   const handletimeChange = (newValue) => {
-    console.log(newValue)
      setFormData({ ...formData, duedate: new Date(newValue.target.value) });
   };
 
@@ -56,7 +53,6 @@ console.log(formData)
     }
    formData._id=props.task._id
      dispatch(updateTask(formData,props.task._id))
-    console.log("Updated Task:", formData);
     handleClose();
   };
 

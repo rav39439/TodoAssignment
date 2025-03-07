@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {  getTask } from "./redux/Actioins"; // Fixed import
 import Navbar from "./components/Navbar/Navbar";
 import Tasks from "./Pages/tasks/Tasks";
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
 
 import { connect } from "react-redux";
@@ -49,7 +49,7 @@ let userdata=JSON.parse(localStorage.getItem('Profile'))
         // console.log(decodedToken)
         if(decodedToken.exp*1000<new Date().getTime()){
             handleLogout()
-            
+
         }
     }
   }

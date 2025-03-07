@@ -1,8 +1,7 @@
 import { AppBar, Toolbar, Typography, Button, IconButton,Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import { addTask, getTask, setUser } from "../../redux/Actioins";
+import { addTask,setUser } from "../../redux/Actioins";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
@@ -65,7 +64,6 @@ const Navbar = (props) => {
       formData['userid']=props?.userInfo!==null?props?.userInfo?.user.result._id:''
      
      dispatch(addTask(formData.username,formData.priority,formData.duedate,formData.userid,formData.taskTitle,formData.taskdetails,formData.taskstartedAt,formData.taskendedAt,formData.taskprogress,formData.taskstatus,formData.taskCategories))
-      console.log("Updated Task:", formData);
       handleClose();
     };
 

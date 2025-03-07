@@ -1,11 +1,10 @@
 import React from 'react'
 
-import  { useState, useEffect } from "react";
+import  { useState } from "react";
 import Acard from '../../components/Acard/Acard';
 
 import './Task.css'
 const Tasks = (props) => {
-  const tasks = props.tasks; // Access tasksReducer state
     const [loading, setloading] = useState(false)
   return (
 <div className="container">

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { login } from "../../redux/Actioins";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 const Login = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const Login = (props) => {
       setEmailError("");
     }
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData)
     if (formRef.current) {
       setIsValid(formRef.current.checkValidity());
     }
@@ -30,9 +29,7 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    console.log("Login Data:", formData);
     dispatch(login({email:formData.email,password:formData.password},navigate))
-    console.log(props.currentMessage)
     if( props.currentMessage!==null){
       alert(props.currentMessage.data.message)
     }
