@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 const Login = (props) => {
   const dispatch = useDispatch();
   const [errormessage, seterrormessage] = useState("");
+  const [loading, setloading] = useState(false);
+
   const {
     register,
     watch,
@@ -54,12 +56,15 @@ const Login = (props) => {
   // };
 
   const onSubmit = (data) => {
-    
+    loading=true
       dispatch(login({email:data.email,password:data.password},navigate))
-    if( props.currentMessage!==null){
-      console.log(props.currentMessage)
-      seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
-    }
+      setTimeout(()=>{
+        setloading(false)
+        if( props.currentMessage!==null){
+          seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
+        }
+      },3000)
+    
     
   };
 
@@ -103,7 +108,10 @@ const Login = (props) => {
         fullWidth
         sx={{ mt: 2 }}
         disabled={!isValid}
-      >
+      >{
+       loading? <span>loading</span>:'login'
+
+      }
         Login
       </Button>
 
