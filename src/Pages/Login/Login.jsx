@@ -112,7 +112,7 @@ const Login = (props) => {
        loading? <span>loading</span>:'login'
 
       }
-        Login
+        
       </Button>
 
       {
