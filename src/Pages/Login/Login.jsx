@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 const Login = (props) => {
   const dispatch = useDispatch();
   const [errormessage, seterrormessage] = useState("");
-  let loading=false
+  const [loading, setLoading] = useState(false); // Use useState for loading
 
   const {
     register,
@@ -21,10 +21,10 @@ const Login = (props) => {
 
   const navigate=useNavigate()
   const onSubmit = (data) => {
-    loading=true
+    setLoading(true)
       dispatch(login({email:data.email,password:data.password},navigate))
       setTimeout(()=>{
-        loading=false
+        setLoading(false)
         if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'')
         }
