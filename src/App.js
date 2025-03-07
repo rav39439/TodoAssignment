@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Tasks from "./Pages/tasks/Tasks";
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
-
+import { dupTask } from "./redux/Actioins";
 import { connect } from "react-redux";
 import { setUser } from "./redux/Actioins";
 import Register from "./Pages/Register/Register";
@@ -39,8 +39,10 @@ function App(props) {
 
 useEffect(()=>{
     dispatch(setUser(JSON.parse(localStorage.getItem('Profile'))))
+
 let userdata=JSON.parse(localStorage.getItem('Profile'))
     dispatch(getTask(userdata))
+    dispatch(dupTask(userdata))
 
     if(localStorage.getItem('Profile')!==null){
       let data=JSON.parse(localStorage.getItem('Profile'))

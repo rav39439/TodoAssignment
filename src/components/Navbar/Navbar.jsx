@@ -51,15 +51,28 @@ const Navbar = (props) => {
     const handletitleChange = (e) => {
       // dispatch(setUser(null))
       // dispatch(getTask(userdata))
-      let taskupdated=props.duptasks.filter(d=>d.taskstatus.toLowerCase()==e.target.value.toLowerCase())
-      dispatch(setTask(taskupdated))
+      if(e.target.value!==""){
+        let taskupdated=props.duptasks.filter(d=>d.taskTitle.includes(e.target.value))
+        dispatch(setTask(taskupdated))
+      }
+      else{
+        dispatch(setTask(props.duptasks))
+
+      }
     };
 
     const handleCategoriesChange = (e) => {
       // let userdata=JSON.parse(localStorage.getItem('Profile'))
       // dispatch(getTask(userdata))
-     let taskupdated=props.duptasks.filter(d=>d.taskTitle==e.target.value)
-      dispatch(setTask(taskupdated))
+      if(e.target.value!==""){
+        let taskupdated=props.duptasks.filter(d=>d.taskstatus.includes(e.target.value))
+        dispatch(setTask(taskupdated))
+      }
+      else{
+        dispatch(setTask(props.duptasks))
+
+      }
+    
 
     };
 
