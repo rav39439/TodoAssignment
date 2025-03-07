@@ -22,11 +22,11 @@ const Login = (props) => {
   const name = watch("name");
   const password = watch("password");
 
-  useEffect(() => {
-    if (errors.message) {
-      clearErrors("message"); // Clear error message when name or password changes
-    }
-  }, [name, password, clearErrors, errors]);
+  // useEffect(() => {
+  //   if (errors.message) {
+  //     clearErrors("message"); // Clear error message when name or password changes
+  //   }
+  // }, [name, password, clearErrors, errors]);
   
   // const handleChange = (e) => {
   //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -57,7 +57,8 @@ const Login = (props) => {
     
       dispatch(login({email:data.email,password:data.password},navigate))
     if( props.currentMessage!==null){
-      seterrormessage(props.currentMessage.data.message)
+      console.log(props.currentMessage)
+      seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
     }
     
   };
