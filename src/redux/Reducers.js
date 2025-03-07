@@ -8,7 +8,8 @@ import {
   GET_MESSAGE_SUCCESS,
   SET_MESSAGE_SUCCESS,
   SET_TASK_NULL,
-  SET_TASK_SUCCESS
+  SET_TASK_SUCCESS,
+  DUP_TASK_SUCCESS
 
 } from "./Actioins";
 
@@ -28,6 +29,7 @@ const TaskReducer = (state = initialState, action) => {
 
     case GET_TASK_SUCCESS:
       return{...state,tasks:[...action.payload]}
+
 
       case SET_TASK_NULL:
       return{...state,tasks:[]}
@@ -55,6 +57,22 @@ const TaskReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const duptasks = {
+  duptasks: [
+
+  ],
+};
+
+const dupReducer = (state = duptasks, action) => {
+  switch (action.type) {
+
+  case DUP_TASK_SUCCESS:
+    return{...state,duptasks:[...action.payload]}
+
+  }
+
+}
 
 // New Users Reducer
 const initialStateuser = null; // State starts as null
@@ -101,4 +119,4 @@ const messageReducer = (state = initialMessage, action) => {
   }
 };
 
-export { TaskReducer, UsersReducer ,messageReducer};
+export { TaskReducer, UsersReducer ,messageReducer,dupReducer};

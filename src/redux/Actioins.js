@@ -13,6 +13,7 @@ export const SET_MESSAGE_SUCCESS = "SET_MESSAGE_SUCCESS";
 export const GET_MESSAGE_SUCCESS = "GET_MESSAGE_SUCCESS";
 export const GET_TASK_SUCCESS = "GET_TASK_SUCCESS";
 export const SET_TASK_SUCCESS = "SET_TASK_SUCCESS";
+export const DUP_TASK_SUCCESS = "DUP_TASK_SUCCESS";
 
 // export const addTask = (id,username,duedate,userid,taskTitle,taskdetails,taskstartedAt,taskendedAt,taskprogress,taskstatus, taskCategories) => {
 //     return {
@@ -73,6 +74,19 @@ export const getTask = (user) => async (dispatch) => {
       dispatch({ type: "GET_TASK_SUCCESS", payload: data });
     } else {
       dispatch({ type: "GET_TASK_SUCCESS", payload: [] });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const dupTask = (user) => async (dispatch) => {
+  try {
+    if (user !== null) {
+      const { data } = await api.getalltasksforuser(user.result._id);
+      dispatch({ type: "DUP_TASK_SUCCESS", payload: data });
+    } else {
+      dispatch({ type: "DUP_TASK_SUCCESS", payload: [] });
     }
   } catch (err) {
     console.log(err);

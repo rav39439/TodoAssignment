@@ -50,15 +50,15 @@ const Navbar = (props) => {
 
     const handletitleChange = (e) => {
       // dispatch(setUser(null))
-      dispatch(getTask(userdata))
-      let taskupdated=props.tasks.filter(d=>d.taskstatus.toLowerCase()==e.target.value.toLowerCase())
+      // dispatch(getTask(userdata))
+      let taskupdated=props.duptasks.filter(d=>d.taskstatus.toLowerCase()==e.target.value.toLowerCase())
       dispatch(setTask(taskupdated))
     };
 
     const handleCategoriesChange = (e) => {
-      let userdata=JSON.parse(localStorage.getItem('Profile'))
-      dispatch(getTask(userdata))
-     let taskupdated=props.tasks.filter(d=>d.taskTitle==e.target.value)
+      // let userdata=JSON.parse(localStorage.getItem('Profile'))
+      // dispatch(getTask(userdata))
+     let taskupdated=props.duptasks.filter(d=>d.taskTitle==e.target.value)
       dispatch(setTask(taskupdated))
 
     };

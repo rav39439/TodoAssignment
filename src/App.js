@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
   currentuser: state.UsersReducer, // Ensure these match your actual reducer names
   tasks: state.TaskReducer, // Fixed reducer name
   messages: state.messageReducer, // Fixed reducer name
+  duptasks: state.dupReducer, // Fixed reducer name
 
 });
 
@@ -57,7 +58,7 @@ let userdata=JSON.parse(localStorage.getItem('Profile'))
   return (
     <div className="App">
       {/* <Router> */}
-        <Navbar tasks={props.tasks.tasks} userInfo={props.currentuser}/>
+        <Navbar tasks={props.tasks.tasks} userInfo={props.currentuser} duptasks={props.duptasks.duptasks}/>
         <Routes>
           <Route exact path="/" element={props.currentuser?.user!==null?<Tasks currentUser={props.currentuser} tasks={props.tasks.tasks} />:<Login />} />
           <Route exact path="/Login" element={<Login  currentMessage={props.messages} />} />
