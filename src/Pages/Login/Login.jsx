@@ -26,7 +26,7 @@ const Login = (props) => {
       setTimeout(()=>{
         loading=false
         if( props.currentMessage!==null){
-          seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
+          seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'')
         }
       },3000)
     
