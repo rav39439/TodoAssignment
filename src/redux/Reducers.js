@@ -70,8 +70,10 @@ const dupReducer = (state = duptasks, action) => {
   case DUP_TASK_SUCCESS:
     return{...state,duptasks:[...action.payload]}
 
+  
+  default:
+    return state; // Ensure default state is returned
   }
-
 }
 
 // New Users Reducer
