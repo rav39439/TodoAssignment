@@ -28,7 +28,7 @@ const Login = (props) => {
         if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'')
         }
-      },3000)
+      },5000)
     
     
   };
