@@ -14,15 +14,11 @@ const Login = (props) => {
   const {
     register,
     watch,
-    clearErrors,
-
     handleSubmit,
     formState: { errors, isValid },
 
   } = useForm({ mode: "onChange" })
 
-  const name = watch("name");
-  const password = watch("password");
   const navigate=useNavigate()
   const onSubmit = (data) => {
     loading=true
