@@ -1,11 +1,10 @@
-import { AppBar, Toolbar, Typography, Button, IconButton,Box } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, IconButton,Box,useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { addTask,getTask,setUser } from "../../redux/Actioins";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTask } from "../../redux/Actioins";
-
 // import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -20,7 +19,7 @@ import {  Dialog,
    MenuItem,
    Select,
    FormControl,
-  
+   useMediaQuery
   
   } from "@mui/material";
 const Navbar = (props) => {
@@ -28,6 +27,10 @@ const Navbar = (props) => {
   const allstatus = ["Completed","In Progress","Started"]; // Categories for the dropdown
   const categories = ["Work", "Personal", "Learning", "Other"]; // Categories for the dropdown
   const priorities = ["Medium", "High", "Low"]; // Categories for the dropdown
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({ taskTitle: '',priority:'Medium',duedate:'', taskdetails:'',taskstartedAt:new Date().toLocaleString(),taskendedAt:'', taskprogress:0,taskstatus:'Started',taskCategories:'',username:'',userid:'' });
@@ -107,7 +110,10 @@ const Navbar = (props) => {
 
     }
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{
+      width: isMobile ? "90%" : isTablet ? "95%" : isLargeScreen ? "100%" : "100%",
+      margin: "0 auto",
+    }}>
       <Toolbar>
        
       <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>

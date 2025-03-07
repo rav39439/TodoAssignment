@@ -68,7 +68,7 @@ const Acard = (props) => {
 
   return (
 
-    <Box sx={{ position: "relative", display: "inline-block" }}>
+    <Box sx={{ position: "relative", display: "inline-block",marginLeft:"20px" }}>
 
     <Card sx={{ maxWidth: 400, border: "1pt solid", borderRadius: "0.25rem", padding: "16px" }}>
   {/* Delete Icon Positioned Inside Card */}
