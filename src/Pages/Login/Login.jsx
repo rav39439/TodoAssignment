@@ -1,4 +1,4 @@
-import {React,useState}  from "react";
+import {React,useState,useEffect}  from "react";
 import { TextField, Button, Card, CardContent, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { login } from "../../redux/Actioins";
@@ -11,10 +11,22 @@ const Login = (props) => {
   const [errormessage, seterrormessage] = useState("");
   const {
     register,
+    watch,
+    clearErrors,
+
     handleSubmit,
     formState: { errors, isValid },
 
   } = useForm({ mode: "onChange" })
+
+  const name = watch("name");
+  const password = watch("password");
+
+  useEffect(() => {
+    if (errors.message) {
+      clearErrors("message"); // Clear error message when name or password changes
+    }
+  }, [name, password, clearErrors, errors]);
   
   // const handleChange = (e) => {
   //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

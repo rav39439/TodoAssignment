@@ -9,9 +9,11 @@ const Tasks = (props) => {
   return (
 <div className="container">
 
-  All tasks
             {props.tasks.length > 0 && loading === false ? (
+
               <div className="task-grid">
+                  <h1>All tasks</h1>
+
                 {props.tasks.map((task, index) => (
                   <div className="col-md-3" key={index}>
                     <Acard task={task} addtask={props.addtask} currentUser={props.currentUser} />
@@ -19,7 +21,7 @@ const Tasks = (props) => {
                 ))}
               </div>
             ) : (
-              <p>No Tasks</p>
+              <h1>No Tasks</h1>
             )}
           </div>
 
