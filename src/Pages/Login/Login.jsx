@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 const Login = (props) => {
   const dispatch = useDispatch();
   const [errormessage, seterrormessage] = useState("");
-  var loading=false
+  let loading=false
 
   const {
     register,
