@@ -25,9 +25,11 @@ const Login = (props) => {
       dispatch(login({email:data.email,password:data.password},navigate))
       setTimeout(()=>{
         setLoading(false)
-        if( props.currentMessage!==null){
+        console.log("cd")
+        console.log(props.currentMessage)
+      //  if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
-        }
+      //  }
       },7000)
     
     
