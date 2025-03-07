@@ -45,6 +45,8 @@ const Navbar = (props) => {
 
     const handleLogout = (e) => {
       dispatch(setUser(null))
+      localStorage.removeItem('Profile');
+
       navigate('/Login')
     };
 
