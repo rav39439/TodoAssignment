@@ -26,9 +26,9 @@ const Login = (props) => {
       setTimeout(()=>{
         setLoading(false)
         if( props.currentMessage!==null){
-          seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'')
+          seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
         }
-      },5000)
+      },7000)
     
     
   };
