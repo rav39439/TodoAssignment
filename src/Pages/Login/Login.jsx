@@ -59,7 +59,7 @@ const Login = (props) => {
     loading=true
       dispatch(login({email:data.email,password:data.password},navigate))
       setTimeout(()=>{
-        setloading(false)
+        loading=false
         if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
         }
