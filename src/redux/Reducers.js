@@ -7,7 +7,9 @@ import {
   GET_TASK_SUCCESS,
   GET_MESSAGE_SUCCESS,
   SET_MESSAGE_SUCCESS,
-  SET_TASK_NULL
+  SET_TASK_NULL,
+  SET_TASK_SUCCESS
+
 } from "./Actioins";
 
 const initialState = {
@@ -29,6 +31,9 @@ const TaskReducer = (state = initialState, action) => {
 
       case SET_TASK_NULL:
       return{...state,tasks:[]}
+
+      case SET_TASK_SUCCESS:
+        return{...state,tasks:action.payload}
 
     case UPDATE_TASK_SUCCESS:
       return {

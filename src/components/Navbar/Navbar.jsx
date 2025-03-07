@@ -1,9 +1,11 @@
 import { AppBar, Toolbar, Typography, Button, IconButton,Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { addTask,setUser } from "../../redux/Actioins";
+import { addTask,getTask,setUser } from "../../redux/Actioins";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setTask } from "../../redux/Actioins";
+
 // import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -19,6 +21,7 @@ import {  Dialog,
    Select,
    FormControl,
   
+  
   } from "@mui/material";
 const Navbar = (props) => {
   const dispatch = useDispatch();
@@ -31,7 +34,8 @@ const Navbar = (props) => {
     
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-  
+    const userdata=JSON.parse(localStorage.getItem('Profile'))
+
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -42,6 +46,21 @@ const Navbar = (props) => {
     const handleLogout = (e) => {
       dispatch(setUser(null))
       navigate('/Login')
+    };
+
+    const handletitleChange = (e) => {
+      // dispatch(setUser(null))
+      dispatch(getTask(userdata))
+      let taskupdated=props.tasks.filter(d=>d.taskstatus.toLowerCase()==e.target.value.toLowerCase())
+      dispatch(setTask(taskupdated))
+    };
+
+    const handleCategoriesChange = (e) => {
+      let userdata=JSON.parse(localStorage.getItem('Profile'))
+      dispatch(getTask(userdata))
+     let taskupdated=props.tasks.filter(d=>d.taskTitle==e.target.value)
+      dispatch(setTask(taskupdated))
+
     };
 
     const handleDateChange = (e) => {
@@ -75,23 +94,56 @@ const Navbar = (props) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          MyApp
-        </Typography>
-        {/* <Button color="inherit" component={Link} to="/">
-          create task
-        </Button> */}
+       
+      <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            MyApp
+          </Typography>
 
-         <Button size="small" onClick={handleOpen} variant="contained">
-         create task
-         </Button>
+          {/* Search and Status Select */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          { (userdata!==null) &&
 
+            <TextField
+              label="Task Title"
+              name="taskTitle"
+              variant="outlined"
+              size="small"
+              sx={{ minWidth: 200 }}
+              onChange={handletitleChange}
+            />
+          }
+{ (userdata!==null) &&
+ <FormControl variant="outlined" size="small" sx={{ minWidth: 150 }}>
+ <Select
+   name="taskstatus"
+   value={formData.taskstatus}
+   onChange={handleCategoriesChange}
+   displayEmpty
+ >
+   <MenuItem value="" disabled>
+     Select Status
+   </MenuItem>
+   {allstatus.map((cat) => (
+     <MenuItem key={cat} value={cat}>
+       {cat}
+     </MenuItem>
+   ))}
+ </Select>
+</FormControl>
+}
+           
+
+            <Button size="small" onClick={handleOpen} variant="contained">
+              Create Task
+            </Button>
          <Button size="small" onClick={handleLogout} variant="contained">
           Logout
          </Button>
+         </Box>
+
 
 
 

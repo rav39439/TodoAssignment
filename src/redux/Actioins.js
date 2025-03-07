@@ -12,6 +12,7 @@ export const SET_MESSAGE_SUCCESS = "SET_MESSAGE_SUCCESS";
 
 export const GET_MESSAGE_SUCCESS = "GET_MESSAGE_SUCCESS";
 export const GET_TASK_SUCCESS = "GET_TASK_SUCCESS";
+export const SET_TASK_SUCCESS = "SET_TASK_SUCCESS";
 
 // export const addTask = (id,username,duedate,userid,taskTitle,taskdetails,taskstartedAt,taskendedAt,taskprogress,taskstatus, taskCategories) => {
 //     return {
@@ -77,6 +78,11 @@ export const getTask = (user) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const setTask = (task) => ({
+  type: SET_TASK_SUCCESS,
+  payload: task,
+});
 
 // export const updateTask = (task) => ({
 //   type: UPDATE_TASK_SUCCESS,
