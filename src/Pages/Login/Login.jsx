@@ -23,38 +23,7 @@ const Login = (props) => {
 
   const name = watch("name");
   const password = watch("password");
-
-  // useEffect(() => {
-  //   if (errors.message) {
-  //     clearErrors("message"); // Clear error message when name or password changes
-  //   }
-  // }, [name, password, clearErrors, errors]);
-  
-  // const handleChange = (e) => {
-  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!emailPattern.test(formData.email) || formData.email=="") {
-  //     setEmailError("Invalid email format");
-  //   } else {
-  //     setEmailError("");
-  //   }
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  //   if (formRef.current) {
-  //     setIsValid(formRef.current.checkValidity());
-  //   }
-  // };
   const navigate=useNavigate()
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-    
-  //   dispatch(login({email:formData.email,password:formData.password},navigate))
-  //   if( props.currentMessage!==null){
-  //     alert(props.currentMessage.data.message)
-  //   }
-    
-  //   // Implement authentication logic here
-  // };
-
   const onSubmit = (data) => {
     loading=true
       dispatch(login({email:data.email,password:data.password},navigate))
