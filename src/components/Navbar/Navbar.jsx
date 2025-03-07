@@ -104,8 +104,7 @@ const Navbar = (props) => {
 
           {/* Search and Status Select */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          { (userdata!==null) &&
-
+          { (userdata!==null) ?
             <TextField
               label="Task Title"
               name="taskTitle"
@@ -113,9 +112,9 @@ const Navbar = (props) => {
               size="small"
               sx={{ minWidth: 200 }}
               onChange={handletitleChange}
-            />
+            />:''
           }
-{ (userdata!==null) &&
+{ (userdata!==null)?
  <FormControl variant="outlined" size="small" sx={{ minWidth: 150 }}>
  <Select
    name="taskstatus"
@@ -132,7 +131,7 @@ const Navbar = (props) => {
      </MenuItem>
    ))}
  </Select>
-</FormControl>
+</FormControl>:''
 }
            
 
