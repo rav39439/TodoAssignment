@@ -15,7 +15,7 @@ const Tasks = (props) => {
               <div className="task-grid">
 
                 {props.tasks.map((task, index) => (
-                  <div className="col-md-3" key={index}>
+                  <div className="col-md-3 mt-2" key={index}>
                     <Acard task={task} addtask={props.addtask} currentUser={props.currentUser} />
                   </div>
                 ))}
