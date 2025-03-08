@@ -111,7 +111,7 @@ const Navbar = (props) => {
     }
   return (
     <AppBar position="static" sx={{
-      width: isMobile ? "90%" : isTablet ? "95%" : isLargeScreen ? "100%" : "100%",
+      width: isMobile ? "140%" : isTablet ? "125%" : isLargeScreen ? "100%" : "100%",
       margin: "0 auto",
     }}>
       <Toolbar>
