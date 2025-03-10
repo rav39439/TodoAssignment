@@ -30,7 +30,7 @@ const Login = (props) => {
       //  if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
       //  }
-      },21000)
+      },19000)
     
     
   };
@@ -42,7 +42,9 @@ const Login = (props) => {
           <Typography variant="h5" textAlign="center" gutterBottom>
             Login
           </Typography>
-          <hint>Render API response can take more than 1 minute to give response.</hint>
+          <p style={{ fontSize: '12px', color: 'gray' }}>
+  Disclaimer: The API response may take more than a minute due to slow response from render Application.
+</p>
 <form onSubmit={handleSubmit(onSubmit)}>
       <TextField
         label="Email"
