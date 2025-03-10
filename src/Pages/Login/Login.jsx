@@ -30,7 +30,7 @@ const Login = (props) => {
       //  if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
       //  }
-      },7000)
+      },12000)
     
     
   };
