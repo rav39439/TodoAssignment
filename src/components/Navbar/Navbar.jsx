@@ -120,7 +120,7 @@ const Navbar = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            MyApp
+            Task Manager
           </Typography>
 
           {/* Search and Status Select */}
