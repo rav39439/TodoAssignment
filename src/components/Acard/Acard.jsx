@@ -68,9 +68,16 @@ const Acard = (props) => {
 
   return (
 
-    <Box sx={{ position: "relative", display: "inline-block",marginLeft:"20px" }}>
+    <Box sx={{ position: "relative", display: "inline-block",marginLeft:"20px",
+      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // <-- this adds the shadow
+      borderRadius: "8px", // optional, makes corners rounded
+      padding: "10px" // optional, adds spacing inside the box
+     }}>
 
-    <Card sx={{ maxWidth: 400, border: "1pt solid", borderRadius: "0.25rem", padding: "16px" }}>
+    <Card sx={{ maxWidth: 400,
+       border: "none",
+       boxShadow: "none", // This removes t
+    }}>
   {/* Delete Icon Positioned Inside Card */}
   <IconButton
       onClick={() => deletetask(props.task._id)}
@@ -105,8 +112,8 @@ const Acard = (props) => {
             fontSize: "12px",
             fontWeight: "bold",
             padding: "4px",
-            borderTopLeftRadius: "8px",
-            borderTopRightRadius: "8px",
+            // borderTopLeftRadius: "8px",
+            // borderTopRightRadius: "8px",
           }}
         >
           Deadline Reached

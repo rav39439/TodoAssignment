@@ -1,4 +1,4 @@
-import React, { useEffect
+import React, { useEffect,useState
 
  } from "react";
  import {useDispatch} from 'react-redux'
@@ -15,6 +15,7 @@ import { dupTask } from "./redux/Actioins";
 import { connect } from "react-redux";
 import { setUser } from "./redux/Actioins";
 import Register from "./Pages/Register/Register";
+import Tasklist from "./Pages/TaskList/Tasklist";
 const mapStateToProps = (state) => ({
   currentuser: state.UsersReducer, // Ensure these match your actual reducer names
   tasks: state.TaskReducer, // Fixed reducer name
@@ -28,7 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function App(props) {
-  console.log(props)
+  const [isTableView, setIsTableView] = useState(true);
+
   const dispatch=useDispatch()
    const navigate=useNavigate()
   const handleLogout=()=>{
@@ -59,12 +61,31 @@ let userdata=JSON.parse(localStorage.getItem('Profile'))
     }
   }
 },[dispatch])
+
+const handleToggle = () => {
+  setIsTableView((prevState) => !prevState);
+};
   return (
     <div className="App">
-      {/* <Router> */}
-        <Navbar tasks={props.tasks.tasks} userInfo={props.currentuser} duptasks={props.duptasks.duptasks}/>
+     <Navbar tasks={props.tasks.tasks} userInfo={props.currentuser} duptasks={props.duptasks.duptasks}/>
+
+    {
+      props.currentuser?.user!==null?(<div style={{padding:"10px"}}>
+        <label  className="switch">
+        <input  type="checkbox" checked={isTableView} onChange={handleToggle} />
+
+        <span className="slider"></span>
+
+      </label>
+      <span>Table View</span>
+
+        </div>):''
+    }
+        
+       
+
         <Routes>
-          <Route exact path="/" element={props.currentuser?.user!==null?<Tasks currentUser={props.currentuser} tasks={props.tasks.tasks} />:<Login />} />
+          <Route exact path="/" element={props.currentuser?.user!==null? isTableView?<Tasklist currentUser={props.currentuser} tasks={props.tasks.tasks} />:<Tasks currentUser={props.currentuser} tasks={props.tasks.tasks}/>:<Login />} />
           <Route exact path="/Login" element={<Login  currentMessage={props.messages} />} />
           <Route exact path="/Register" element={<Register />} />
 
