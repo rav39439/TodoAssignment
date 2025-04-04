@@ -1,8 +1,8 @@
 import React from 'react'
-import './Acard.css'
+import './Taskcard.css'
 import { useState } from "react";
-import { updateTask } from '../../redux/Actioins';
-import { deleteTask } from '../../redux/Actioins';
+import { updateTask } from '../../redux/Actions';
+import { deleteTask } from '../../redux/Actions';
 import {Box, Card, CardContent, Typography, CardActions, Button, LinearProgress,
    Table, TableBody, TableRow, TableCell , Dialog,  Slider,
 
@@ -21,7 +21,7 @@ import {Box, Card, CardContent, Typography, CardActions, Button, LinearProgress,
 
 
 
-const Acard = (props) => {
+const Taskcard = (props) => {
   const currentDate = new Date();
   const dueDate = new Date(props.task.duedate);
   const isOverdue = dueDate < currentDate;
@@ -302,4 +302,4 @@ value={formData.duedate ? new Date(formData.duedate).toISOString().slice(0, 16) 
   )
 }
 
-export default Acard
+export default Taskcard

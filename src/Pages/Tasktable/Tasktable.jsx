@@ -1,12 +1,12 @@
 import React from 'react'
-import './Tasklist.css'
+import './Tasktable.css'
 import  { useState } from "react";
-import Tasktable from '../../components/Tasktable/Tasktable';
+import Taskrow from '../../components/Taskrow/Taskrow';
 import { Typography } from '@mui/material';
 
 
 // import './Task.css'
-const Tasklist = (props) => {
+const Tasktable = (props) => {
     const [loading, setloading] = useState(false)
   return (
     <>
@@ -36,7 +36,7 @@ const Tasklist = (props) => {
     </thead>
     <tbody>
       {props.tasks.map((task, index) => (
-        <Tasktable
+        <Taskrow
           key={index}
           task={task}
           addtask={props.addtask}
@@ -54,4 +54,4 @@ const Tasklist = (props) => {
   )
 }
 
-export default Tasklist
+export default Tasktable

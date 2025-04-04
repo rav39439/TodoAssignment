@@ -6,16 +6,16 @@ import React, { useEffect,useState
 
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {  getTask } from "./redux/Actioins"; // Fixed import
+import {  getTask } from "./redux/Actions"; // Fixed import
 import Navbar from "./components/Navbar/Navbar";
 import Tasks from "./Pages/tasks/Tasks";
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
-import { dupTask } from "./redux/Actioins";
+import { dupTask } from "./redux/Actions";
 import { connect } from "react-redux";
-import { setUser } from "./redux/Actioins";
+import { setUser } from "./redux/Actions";
 import Register from "./Pages/Register/Register";
-import Tasklist from "./Pages/TaskList/Tasklist";
+import Tasktable from "./Pages/Tasktable/Tasktable";
 const mapStateToProps = (state) => ({
   currentuser: state.UsersReducer, // Ensure these match your actual reducer names
   tasks: state.TaskReducer, // Fixed reducer name
@@ -85,7 +85,7 @@ const handleToggle = () => {
        
 
         <Routes>
-          <Route exact path="/" element={props.currentuser?.user!==null? isTableView?<Tasklist currentUser={props.currentuser} tasks={props.tasks.tasks} />:<Tasks currentUser={props.currentuser} tasks={props.tasks.tasks}/>:<Login />} />
+          <Route exact path="/" element={props.currentuser?.user!==null? isTableView?<Tasktable currentUser={props.currentuser} tasks={props.tasks.tasks} />:<Tasks currentUser={props.currentuser} tasks={props.tasks.tasks}/>:<Login />} />
           <Route exact path="/Login" element={<Login  currentMessage={props.messages} />} />
           <Route exact path="/Register" element={<Register />} />
 

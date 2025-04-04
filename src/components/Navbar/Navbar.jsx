@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { addTask, getTask, setUser } from "../../redux/Actioins";
+import { addTask, getTask, setUser } from "../../redux/Actions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setTask } from "../../redux/Actioins";
+import { setTask } from "../../redux/Actions";
 // import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 // import "react-datepicker/dist/react-datepicker.css";

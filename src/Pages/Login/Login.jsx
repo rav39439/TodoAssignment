@@ -1,7 +1,7 @@
 import {React,useState,useEffect}  from "react";
 import { TextField, Button, Card, CardContent, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import { login } from "../../redux/Actioins";
+import { login } from "../../redux/Actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -92,7 +92,9 @@ const Login = (props) => {
         :''
       }
             <Link to="/Register" style={{ display: "block", textAlign: "center", marginTop: "10px", textDecoration: "none", color: "blue" }}>
-   Sign up
+            Don't have an account? Sign up
+
+
 </Link>
           </form>
         </CardContent>

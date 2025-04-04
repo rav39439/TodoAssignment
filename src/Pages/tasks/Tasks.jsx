@@ -1,7 +1,7 @@
 import React from 'react'
 
 import  { useState } from "react";
-import Acard from '../../components/Acard/Acard';
+import Taskcard from '../../components/Taskcard/Taskcard';
 import { Typography } from '@mui/material';
 
 import './Task.css'
@@ -20,7 +20,7 @@ const Tasks = (props) => {
 
                 {props.tasks.map((task, index) => (
                   <div className="col-md-3 mt-2" key={index}>
-                    <Acard task={task} addtask={props.addtask} currentUser={props.currentUser} />
+                    <Taskcard task={task} addtask={props.addtask} currentUser={props.currentUser} />
                   </div>
                 ))}
               </div>

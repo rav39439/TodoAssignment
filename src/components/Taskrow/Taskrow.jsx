@@ -1,8 +1,7 @@
 import React from 'react'
-// import './Acard.css'
 import { useState } from "react";
-import { updateTask } from '../../redux/Actioins';
-import { deleteTask } from '../../redux/Actioins';
+import { updateTask } from '../../redux/Actions';
+import { deleteTask } from '../../redux/Actions';
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 
@@ -24,12 +23,10 @@ import {Box, Card, CardContent, Typography, CardActions, Button, LinearProgress,
 
 
 
-const Tasktable = (props) => {
+const Taskrow = (props) => {
   const currentDate = new Date();
   const dueDate = new Date(props.task.duedate);
   const isOverdue = dueDate < currentDate;
-  // console.log(import.meta.globEager('./Acard.css'))
-
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -255,4 +252,4 @@ const Tasktable = (props) => {
   )
 }
 
-export default Tasktable
+export default Taskrow

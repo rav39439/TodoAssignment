@@ -11,7 +11,7 @@ import {
   SET_TASK_SUCCESS,
   DUP_TASK_SUCCESS
 
-} from "./Actioins";
+} from "./Actions";
 
 const initialState = {
   tasks: [
