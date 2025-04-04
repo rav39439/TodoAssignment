@@ -9,7 +9,10 @@ import {
   SET_MESSAGE_SUCCESS,
   SET_TASK_NULL,
   SET_TASK_SUCCESS,
-  DUP_TASK_SUCCESS
+  DUP_TASK_SUCCESS,
+  SET_DUPTASK_NULL,
+  ADD_DUPTASK_SUCCESS,
+  DELETE_DUPTASK_SUCCESS
 
 } from "./Actions";
 
@@ -70,7 +73,21 @@ const dupReducer = (state = duptasks, action) => {
   case DUP_TASK_SUCCESS:
     return{...state,duptasks:[...action.payload]}
 
-  
+    case SET_DUPTASK_NULL:
+      return{...state,duptasks:[]}
+    case ADD_DUPTASK_SUCCESS:
+        return {
+          ...state,
+          duptasks: [...state.duptasks, action.payload], // ✅ Append new task to existing tasks
+        };
+        case DELETE_DUPTASK_SUCCESS:
+          return {
+            ...state,
+            tasks: state.tasks.filter(
+              (task) => task._id !== action.payload // ✅ Update existing task
+            ),
+          };
+    
   default:
     return state; // Ensure default state is returned
   }

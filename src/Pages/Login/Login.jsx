@@ -13,7 +13,6 @@ const Login = (props) => {
 
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors, isValid },
 
@@ -25,8 +24,7 @@ const Login = (props) => {
       dispatch(login({email:data.email,password:data.password},navigate))
       setTimeout(()=>{
         setLoading(false)
-        console.log("cd")
-        console.log(props.currentMessage)
+       
       //  if( props.currentMessage!==null){
           seterrormessage(typeof(props.currentMessage)!=='undefined'&& props.currentMessage!==null?props.currentMessage.data.message:'Credentials are not valid')
       //  }

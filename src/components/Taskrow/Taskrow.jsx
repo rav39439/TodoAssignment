@@ -48,6 +48,7 @@ const Taskrow = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if(formData.taskstatus=='Completed'){
       formData.taskendedAt=new Date().toISOString()
     }
@@ -57,7 +58,8 @@ const Taskrow = (props) => {
   };
 
   const deletetask=(id)=>{
-    dispatch(deleteTask(props.task._id))
+    console.log(id)
+    dispatch(deleteTask(id))
 
   }
 
@@ -111,7 +113,7 @@ const Taskrow = (props) => {
 </td>
 
 <td>
- {formatDate(props.task.taskendedAt)|| 'N/A'}
+ {props.task.taskendedAt!==null?formatDate(props.task.taskendedAt): 'N/A'}
 
 </td>
   

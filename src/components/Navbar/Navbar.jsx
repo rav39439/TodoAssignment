@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { addTask, getTask, setUser } from "../../redux/Actions";
+import { addTask, getTask, setTaskNull, setUser } from "../../redux/Actions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTask } from "../../redux/Actions";
@@ -76,12 +76,15 @@ const Navbar = (props) => {
   const handletitleChange = (e) => {
     // dispatch(setUser(null))
     // dispatch(getTask(userdata))
+
     if (e.target.value !== "") {
       let taskupdated = props.duptasks.filter((d) =>
         d.taskTitle.includes(e.target.value)
       );
+      // dispatch(setTaskNull())
       dispatch(setTask(taskupdated));
     } else {
+      // dispatch(setTaskNull())
       dispatch(setTask(props.duptasks));
     }
   };
@@ -93,6 +96,7 @@ const Navbar = (props) => {
       let taskupdated = props.duptasks.filter((d) =>
         d.taskstatus.includes(e.target.value)
       );
+     
       dispatch(setTask(taskupdated));
     } else {
       dispatch(setTask(props.duptasks));
@@ -128,7 +132,7 @@ const Navbar = (props) => {
         formData.taskTitle,
         formData.taskdetails,
         formData.taskstartedAt,
-        formData.taskendedAt,
+        formData.taskendedAt==""?null:formData.taskendedAt,
         formData.taskprogress,
         formData.taskstatus,
         formData.taskCategories
