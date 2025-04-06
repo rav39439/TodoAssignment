@@ -40,7 +40,7 @@ const Navbar = (props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
-
+const test=false
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -174,9 +174,9 @@ const Navbar = (props) => {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Task Manager
         </Typography>
-        {isMobile ? (
+        {test ? (
           <>
-            <IconButton
+            {/* <IconButton
               edge="start"
               color="inherit"
               aria-label="menu"
@@ -217,7 +217,7 @@ const Navbar = (props) => {
                 </>
               )}
               <MenuItem onClick={props.handleLogout}>Logout</MenuItem>
-            </Menu>
+            </Menu> */}
           </>
         ):(
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
