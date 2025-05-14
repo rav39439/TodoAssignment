@@ -1,6 +1,8 @@
 import axios from "axios";
 const API = axios.create({
-    baseURL: "https://taskmangerapiuser.onrender.com", // Ensure this is correct
+    // baseURL: "https://taskmangerapiuser.onrender.com", // Ensure this is correct
+    baseURL: "http://localhost:5000", // Ensure this is correct
+
     headers: { "Content-Type": "application/json" } // Ensures JSON request
 });
 // const API=axios.create({baseURL:'https://stackoverflowcloneapi.onrender.com'})
@@ -11,11 +13,6 @@ API.interceptors.request.use((req)=>{
     }
     return req;
 })
-
-
-
-// export const fetchAllUsers=()=>API.get('/api/users/getAllUsers')
-
 
 export const SignUp=(authData)=>API.post('/api/users/signup',authData);
 export const addnewtask=(taskData)=>API.post('/api/tasks/add',taskData)

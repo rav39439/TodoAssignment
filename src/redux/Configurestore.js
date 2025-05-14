@@ -8,8 +8,6 @@ const reducer = combineReducers({
     UsersReducer,
     messageReducer,
     dupReducer
-
-   
   })
   const store = configureStore({
     reducer
