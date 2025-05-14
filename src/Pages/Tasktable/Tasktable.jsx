@@ -9,7 +9,7 @@ const Tasktable = (props) => {
   return (
     <>
 <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold', textAlign: 'center' }}>
-  Welcome to Taskmanager
+  Welcome to Todomanager
 </Typography>
     <div className="container mt-4">
 
