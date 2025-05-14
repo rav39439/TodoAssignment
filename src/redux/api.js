@@ -1,9 +1,9 @@
 import axios from "axios";
 const API = axios.create({
-    // baseURL: "https://taskmangerapiuser.onrender.com", // Ensure this is correct
-    baseURL: "http://localhost:5000", // Ensure this is correct
+    baseURL: "https://todomangerapi.onrender.com",
+    // baseURL: "http://localhost:5000", 
 
-    headers: { "Content-Type": "application/json" } // Ensures JSON request
+    headers: { "Content-Type": "application/json" } 
 });
 // const API=axios.create({baseURL:'https://stackoverflowcloneapi.onrender.com'})
 export const logIn=(authData)=>API.post('/api/users/login',authData);
