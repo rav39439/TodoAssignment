@@ -29,6 +29,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const Taskrow = (props) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+    const [editTodo, setTodoEdit] = useState(false);
+
+    const [currenttodo, setTodo] = useState({});
+
   const [formData, setFormData] = useState({
     taskTitle: props.task.taskTitle,
     duedate: props.task.duedate,
@@ -42,6 +46,8 @@ const Taskrow = (props) => {
   });
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+    const handleCloseEdit = () => setTodoEdit(false);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -225,6 +231,34 @@ const Taskrow = (props) => {
                         >
                           Complete
                         </Button>
+
+                         <Button
+                          size="small"
+                          color="green"
+                          onClick={() => {
+                            setTodo(todo);
+                            setTodoEdit(true)
+
+                          }}
+                        >
+                          Edit
+                        </Button>
+
+                         <Button
+                          size="small"
+                          color="green"
+                          onClick={() => {
+                           
+                            setFormData((prev) => ({
+                              ...prev,
+                              todos: prev.todos.filter(
+                                (t) => t.todoId !== todo.todoId
+                              ),
+                            }));
+                          }}
+                        >
+                          Delete
+                        </Button>
                       </Box>
                     ))}
                   </Box>
@@ -297,6 +331,51 @@ const Taskrow = (props) => {
         </Dialog>
       </td>
       <td>
+
+          <Dialog open={editTodo} onClose={handleCloseEdit}>
+          <DialogTitle>Update Todo</DialogTitle>
+
+          <DialogContent>
+<label style={{ fontWeight: "600" }}>Todo</label>
+              <TextField
+                type="text"
+                defaultValue={
+                  currenttodo.todo
+                    ?currenttodo.todo
+                    : ""
+                }
+                onChange={(e)=>{
+                  setTodo({...currenttodo,todo:e.target.value})
+
+                }}
+              
+                
+              />
+
+          </DialogContent>
+
+<DialogActions>
+                <Box
+                  width="100%"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Button type="submit" color="primary" variant="contained"   onClick={(e) => {
+                  
+                          setFormData((prev) => ({
+                              ...prev,
+                              todos: prev.todos.map((t)=>t.todoId===currenttodo.todoId?currenttodo:t)
+                            }));
+                     setTodoEdit(false)
+
+                          }}
+>
+                    Save Todo
+                  </Button>
+                </Box>
+              </DialogActions>
+          </Dialog>
         <FaTrash
           size={24}
           style={{ color: "red" }}
