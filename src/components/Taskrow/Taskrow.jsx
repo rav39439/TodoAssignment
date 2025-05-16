@@ -94,7 +94,7 @@ const Taskrow = (props) => {
     <tr>
       {/* Delete Icon & Overdue Label */}
       <td>
-        <td>{props.task.taskTitle}</td>
+      {props.task.taskTitle}
       </td>
       <td>
         <Typography variant="body2">
